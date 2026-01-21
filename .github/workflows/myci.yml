@@ -273,6 +273,16 @@ jobs:
         with:
           api-level: 34
           ndk-version: '27.3.13750724'
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Set up JDK
+        id: setup-java
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: "temurin"
 
       - name: runinit
         env:

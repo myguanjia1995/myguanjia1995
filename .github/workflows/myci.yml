@@ -67,6 +67,7 @@ jobs:
   active:
     name: active
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     # if: ${{ inputs.port }}
     permissions:
       packages: write
@@ -186,6 +187,11 @@ jobs:
       matrix:
         valueTag: ${{ fromJson(needs.ghaction-setup.outputs.valueTag) }}
     steps:
+      - name: Configure Fast APT Mirror
+        uses: vegardit/fast-apt-mirror.sh@v1
+        with:
+          healthchecks: 20
+          speedtests: 10
       - name: checkoutactions
         uses: actions/checkout@v4
         with:
